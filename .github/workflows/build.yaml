@@ -247,6 +247,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release `
             -DCMAKE_PREFIX_PATH="${{ steps.qt.outputs.qt_dir }};${{ steps.qt_creator.outputs.qtc_dir }}${prefix_extra}" `
             -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.vcpkg_triplet }} -DVCPKG_MANIFEST_MODE=OFF `
             ../SpellChecker-Plugin/
           cmake --build .
 
