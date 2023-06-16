@@ -122,12 +122,8 @@ jobs:
 
       # Install vcpkg and Hunspell for the correct compiler and OS.
       - name: Vcpkg - Hunspell
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: 501db0f17ef6df184fcdbfbe0f87cde2313b6ab1
-          vcpkgJsonGlob: '**/vcpkg.json'
-          vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-          runVcpkgInstall: true
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: vcpkg integrate install
 
       - name: Download Qt
         id: qt
