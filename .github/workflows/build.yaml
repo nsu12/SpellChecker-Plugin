@@ -85,6 +85,7 @@ jobs:
               qtc_platform: "windows_x64",
               environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
               is_msvc: true
+              vcpkg_triplet: x64-windows-release
             }
           - {
               name: "linux",
@@ -93,6 +94,7 @@ jobs:
               arch: "x64",
               qt_arch: "",
               qtc_platform: "linux_x64"
+              vcpkg_triplet: x64-linux-release
             }
           - {
               name: "macos",
@@ -101,6 +103,7 @@ jobs:
               arch: "x64",
               qt_arch: "",
               qtc_platform: "mac_x64"
+              vcpkg_triplet: x64-osx-release
             }
       fail-fast: false
 
@@ -122,8 +125,14 @@ jobs:
 
       # Install vcpkg and Hunspell for the correct compiler and OS.
       - name: Vcpkg - Hunspell
-        working-directory: ${{env.GITHUB_WORKSPACE}}
-        run: vcpkg integrate install
+        uses: johnwason/vcpkg-action@v5
+        id: vcpkg
+        with:
+          pkgs: hunspell
+          triplet: ${{ matrix.config.vcpkg_triplet }}
+          cache-key: ${{ matrix.config.os }}
+          revision: master
+          token: ${{ github.token }}
 
       - name: Download Qt
         id: qt
