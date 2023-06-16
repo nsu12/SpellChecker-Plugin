@@ -246,7 +246,7 @@ jobs:
           cmake -G Ninja `
             -DCMAKE_BUILD_TYPE=Release `
             -DCMAKE_PREFIX_PATH="${{ steps.qt.outputs.qt_dir }};${{ steps.qt_creator.outputs.qtc_dir }}${prefix_extra}" `
-            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" `
             ../SpellChecker-Plugin/
           cmake --build .
 
