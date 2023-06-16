@@ -84,7 +84,7 @@ jobs:
               qt_arch: "win64_msvc2019_64",
               qtc_platform: "windows_x64",
               environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-              is_msvc: true
+              is_msvc: true,
               vcpkg_triplet: x64-windows-release
             }
           - {
@@ -93,7 +93,7 @@ jobs:
               sys: "linux",
               arch: "x64",
               qt_arch: "",
-              qtc_platform: "linux_x64"
+              qtc_platform: "linux_x64",
               vcpkg_triplet: x64-linux-release
             }
           - {
@@ -102,7 +102,7 @@ jobs:
               sys: "osx",
               arch: "x64",
               qt_arch: "",
-              qtc_platform: "mac_x64"
+              qtc_platform: "mac_x64",
               vcpkg_triplet: x64-osx-release
             }
       fail-fast: false
